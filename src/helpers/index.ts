@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-const SECRET = "GRESTAPI";
+const SECRET = "GRESTAPI"; // move to env file
 
 export const random = () => crypto.randomBytes(128).toString("base64");
 export const authentication = (salt: string, password: string) => {

@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
+import router from "./router";
 
 const app = express();
 
@@ -20,11 +21,12 @@ app.use(bodyparser.json());
 
 const server = http.createServer(app);
 
-server.listen(3000, () => {
-  console.log("Server started on port 3000");
+server.listen(8080, () => {
+  console.log("Server started on port 8080");
 });
 
-const MONGO_URL = "mongodb://localhost:27017";
+// --authenticationMechanism MONGODB-OIDC
+const MONGO_URL = "mongodb://admin:example@localhost:27017/";
 
 mongoose.Promise = Promise;
 
@@ -34,3 +36,5 @@ mongoose.connection.on("error", (err) => {
   console.error(err);
   process.exit(1);
 });
+
+app.use("/", router());
