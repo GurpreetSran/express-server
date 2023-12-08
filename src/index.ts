@@ -6,6 +6,9 @@ import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
 import router from "./router";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -21,11 +24,12 @@ app.use(bodyparser.json());
 
 const server = http.createServer(app);
 
-server.listen(8080, () => {
-  console.log("Server started on port 8080");
+const PORT = process.env.PORT || 8080;
+
+server.listen(PORT, () => {
+  console.log("Server started on port " + PORT);
 });
 
-// --authenticationMechanism MONGODB-OIDC
 const MONGO_URL = "mongodb://admin:example@localhost:27017/";
 
 mongoose.Promise = Promise;
