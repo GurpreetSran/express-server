@@ -4,6 +4,9 @@ services:
   mongo:
     image: mongo
     restart: always
+    ports:
+      # for local testing, expose ports
+      - "27017:27017"
     volumes:
       - ./data:/data/db
     environment:
