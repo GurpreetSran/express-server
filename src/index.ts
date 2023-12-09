@@ -30,11 +30,9 @@ server.listen(PORT, () => {
   console.log("Server started on port " + PORT);
 });
 
-const MONGO_URL = "mongodb://admin:example@localhost:27017/";
-
 mongoose.Promise = Promise;
 
-mongoose.connect(MONGO_URL);
+mongoose.connect(process.env.MONGO_URI);
 
 mongoose.connection.on("error", (err) => {
   console.error(err);
